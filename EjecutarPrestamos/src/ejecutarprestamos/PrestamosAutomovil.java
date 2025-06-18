@@ -10,7 +10,6 @@ public class PrestamosAutomovil extends Prestamo {
 
     public PrestamosAutomovil(String tipoAutomovil, String marcaAutomovil, Persona garante, double valorAutomovil, int tiempoPrestamo, String ciudad, String nombre, String apellido, String username) {
         super(tiempoPrestamo, ciudad, nombre, apellido, username);
-        garante = new Persona(nombre, apellido, username);
         this.tipoAutomovil = tipoAutomovil;
         this.marcaAutomovil = marcaAutomovil;
         this.valorAutomovil = valorAutomovil;

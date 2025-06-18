@@ -1,7 +1,7 @@
-
 package ejecutarprestamos;
 
 public class InstitucionEducativa {
+
     protected String nombre;
     protected String siglas;
 
@@ -25,6 +25,5 @@ public class InstitucionEducativa {
     public void setSiglas(String siglas) {
         this.siglas = siglas;
     }
-    
-    
+
 }
