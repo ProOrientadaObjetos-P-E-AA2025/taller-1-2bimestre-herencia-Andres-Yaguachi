@@ -4,7 +4,7 @@ public class PrestamosAutomovil extends Prestamo {
 
     protected String tipoAutomovil;
     protected String marcaAutomovil;
-    Persona garante;
+    protected Persona garante;
     protected double valorAutomovil;
     protected double valorMensual;
 
