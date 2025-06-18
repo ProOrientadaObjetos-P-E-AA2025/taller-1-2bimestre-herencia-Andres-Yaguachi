@@ -6,6 +6,7 @@ public class PrestamoEducativo extends Prestamo {
     private InstitucionEducativa tipoInstitucion;
     private double valorCarrera;
     private double valormensualPrestamoedu;
+    private double prestamoEducativo;
 
     public PrestamoEducativo(String nivelEstudio, double valorCarrera, int tiempoPrestamo, String ciudad, String nombre, String apellido, String username, String nombre1, String siglas) {
         super(tiempoPrestamo, ciudad, nombre, apellido, username);
@@ -40,7 +41,15 @@ public class PrestamoEducativo extends Prestamo {
     }
 
     public void calcularvalormensualEducativo() {
-        this.valormensualPrestamoedu = (double) (valorCarrera / tiempoPrestamo) * 0.9;
+        this.valormensualPrestamoedu = (double) (prestamoEducativo / tiempoPrestamo) * 0.9;
+    }
+
+    public void calcularPrestamoEducativo() {
+        prestamoEducativo = (valorCarrera * interes) + valorCarrera;
+    }
+
+    public double getPrestamoEducativo() {
+        return prestamoEducativo;
     }
 
     @Override
@@ -58,6 +67,8 @@ public class PrestamoEducativo extends Prestamo {
         sb.append(" \n").append(tipoInstitucion);
         sb.append(" \nTiempo de Prestamo:").append(tiempoPrestamo);
         sb.append(" \nvalor de la Carrera:").append(valorCarrera);
+        sb.append(" \nInteres: ").append(interes);
+        sb.append(String.format(" \nTotal del prestamo: %.2f", prestamoEducativo));
         sb.append(String.format(" \nvalor mensual del Prestamo: %.2f", valormensualPrestamoedu));
 
         return sb.toString();

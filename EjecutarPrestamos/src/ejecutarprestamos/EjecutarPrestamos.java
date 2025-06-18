@@ -1,6 +1,7 @@
 package ejecutarprestamos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class EjecutarPrestamos {
@@ -10,6 +11,7 @@ public class EjecutarPrestamos {
         //Arreglos donde guardaremos cada prestamo para imprimirlos al final
         ArrayList<PrestamoEducativo> pE = new ArrayList<>();
         ArrayList<PrestamosAutomovil> pA = new ArrayList<>();
+        ArrayList<String> apellidos = new ArrayList<>();
         int opc, opc2;
         //variables persona;
         String nomP;
@@ -37,6 +39,7 @@ public class EjecutarPrestamos {
                     if (opc2 == 2) {
                         PrestamoEducativo presEd = new PrestamoEducativo("Grado", 15000, 24, "LOJA", "Danny", "Villacorta",
                                 "ds-villacorta1@utpl", "Universidad Tecnica Particular de Loja", "UTPL");
+                        presEd.calcularPrestamoEducativo();
                         presEd.calcularvalormensualEducativo();
                         //Agrego el prestamo al arreglo
                         pE.add(presEd);
@@ -72,9 +75,11 @@ public class EjecutarPrestamos {
                         nivEst = sc.nextLine();
                         System.out.print("Ingrese el valor de su carrera: ");
                         valCarrera = sc.nextDouble();
+                        sc.nextLine();
                         //Crear el Objeto
                         PrestamoEducativo presEd = new PrestamoEducativo(nivEst, valCarrera, timPres, ciudad, nomP, apel, uname, nomIns, siglas);
                         //calculamos el valor de pago mensual;
+                        presEd.calcularPrestamoEducativo();
                         presEd.calcularvalormensualEducativo();
                         //Agrego el prestamo al arreglo
                         pE.add(presEd);
@@ -88,6 +93,7 @@ public class EjecutarPrestamos {
                     if (opc2 == 2) {
                         Persona garante = new Persona("Israel", "Ludena", "is.ludean@utpl");
                         PrestamosAutomovil presAu = new PrestamosAutomovil("Deportivo", "Audi", garante, 250000, 24, "quito", "Sebastian", "Yaguachi ", "se.yaguachi");
+                        presAu.calcularPrestamoAutomovil();
                         presAu.calcularValorMensual();
                         pA.add(presAu);
                         System.out.println("Prestamo de Automovil agregado......");
@@ -124,14 +130,52 @@ public class EjecutarPrestamos {
                         marAu = sc.nextLine();
                         System.out.print("Ingrese el valor del vehiculo: ");
                         valAu = sc.nextDouble();
+                        sc.nextLine();
                         //Creamo el objeto
                         PrestamosAutomovil presAu = new PrestamosAutomovil(tipoAu, marAu, garante, valAu, timPres, ciudad, nomP, apel, uname);
+                        presAu.calcularPrestamoAutomovil();
                         presAu.calcularValorMensual();
                         pA.add(presAu);
                         System.out.println("Prestamo de Automovil agregado......");
                     } else {
                         break;
                     }
+                    break;
+                case 3:
+                    if (pE.isEmpty()) {
+                        System.out.println("No hay prestamos para ordenar");
+                    } else {
+                        System.out.println("PRESTAMOS-EDUCATIVOS");
+                        for (int i = 0; i < pE.size(); i++) {
+                            apellidos.add(pE.get(i).beneficiario.apellido);
+                        }
+                        Collections.sort(apellidos);
+                        for (String apellido : apellidos) {
+                            for (int i = 0; i < pE.size(); i++) {
+                                if (apellido.equals(pE.get(i).beneficiario.apellido)) {
+                                    System.out.println(pE.get(i));
+                                }
+                            }
+                        }
+
+                    }
+                    if (pA.isEmpty()) {
+                        System.out.println("No hay prestamos de automoviles para ordenar");
+                    } else {
+                        System.out.println("PRESTAMOS-Automovil");
+                        for (int i = 0; i < pA.size(); i++) {
+                            apellidos.add(pA.get(i).beneficiario.apellido);
+                        }
+                        Collections.sort(apellidos);
+                        for (String apellido : apellidos) {
+                            for (int i = 0; i < pA.size(); i++) {
+                                if (apellido.equals(pA.get(i).beneficiario.apellido)) {
+                                    System.out.println(pA.get(i));
+                                }
+                            }
+                        }
+                    }
+
                     break;
             }
 
@@ -166,6 +210,7 @@ public class EjecutarPrestamos {
         System.out.println("\nMenu Principal");
         System.out.println("[1] Prestamo Educativo");
         System.out.println("[2] prestamo de Automovil");
+        System.out.println("[3] Mostrar prestamos ordenados por Apellido");
         System.out.println("[0] Salir y Mostrar Prestamos");
         opc = sc.nextInt();
         sc.nextLine();

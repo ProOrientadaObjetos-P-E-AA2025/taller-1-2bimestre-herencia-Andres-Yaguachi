@@ -7,6 +7,7 @@ public class PrestamosAutomovil extends Prestamo {
     protected Persona garante;
     protected double valorAutomovil;
     protected double valorMensual;
+    protected double prestamoAutomovil;
 
     public PrestamosAutomovil(String tipoAutomovil, String marcaAutomovil, Persona garante, double valorAutomovil, int tiempoPrestamo, String ciudad, String nombre, String apellido, String username) {
         super(tiempoPrestamo, ciudad, nombre, apellido, username);
@@ -45,7 +46,15 @@ public class PrestamosAutomovil extends Prestamo {
     }
 
     public void calcularValorMensual() {
-        this.valorMensual = (double) valorAutomovil / tiempoPrestamo;
+        this.valorMensual = (double) prestamoAutomovil / tiempoPrestamo;
+    }
+
+    public void calcularPrestamoAutomovil() {
+        prestamoAutomovil = (valorAutomovil * interes) + valorAutomovil;
+    }
+
+    public double getPrestamoEducativo() {
+        return prestamoAutomovil;
     }
 
     @Override
@@ -63,7 +72,9 @@ public class PrestamosAutomovil extends Prestamo {
         sb.append(" \nTipo de Automovil:").append(tipoAutomovil);
         sb.append(" \nMarca del Automovil: ").append(marcaAutomovil);
         sb.append(" \nValor del Automovil: ").append(valorAutomovil);
+        sb.append(" \nInteres: ").append(interes);
         sb.append(" \nTiempo de Prestamo:").append(tiempoPrestamo);
+        sb.append(String.format(" \nTotal del prestamo: %.2f", prestamoAutomovil));
         sb.append(String.format(" \nvalor mensual del Prestamo: %.2f", valorMensual));
         return sb.toString();
     }

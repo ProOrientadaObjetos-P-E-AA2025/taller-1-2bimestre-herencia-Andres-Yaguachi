@@ -5,11 +5,13 @@ public class Prestamo {
     Persona beneficiario;
     protected int tiempoPrestamo;
     protected String ciudad;
+    protected float interes;
 
     public Prestamo(int tiempoPrestamo, String ciudad, String nombre, String apellido, String username) {
         beneficiario = new Persona(nombre, apellido, username);
         this.tiempoPrestamo = tiempoPrestamo;
         this.ciudad = ciudad;
+        interes = (float) (0.17);
     }
 
     public Persona getBeneficiario() {
