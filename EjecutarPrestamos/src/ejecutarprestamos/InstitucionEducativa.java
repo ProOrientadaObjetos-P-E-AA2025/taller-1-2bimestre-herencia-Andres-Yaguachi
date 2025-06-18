@@ -26,4 +26,12 @@ public class InstitucionEducativa {
         this.siglas = siglas;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Institucion Educativa: ").append(nombre);
+        sb.append("\nSiglas: ").append(siglas);
+        return sb.toString();
+    }
+
 }

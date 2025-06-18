@@ -1,10 +1,10 @@
-
 package ejecutarprestamos;
 
 public class Persona {
-   protected String nombre;
-   protected String apellido;
-   protected String username;
+
+    protected String nombre;
+    protected String apellido;
+    protected String username;
 
     public Persona(String nombre, String apellido, String username) {
         this.nombre = nombre;
@@ -35,5 +35,13 @@ public class Persona {
     public void setUsername(String username) {
         this.username = username;
     }
-   
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ").append(nombre).append(" ").append(apellido);
+        sb.append(" \nusername: ").append(username);
+        return sb.toString();
+    }
+
 }

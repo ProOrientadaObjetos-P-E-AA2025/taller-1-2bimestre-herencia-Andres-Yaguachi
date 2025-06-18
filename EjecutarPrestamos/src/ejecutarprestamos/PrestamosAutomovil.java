@@ -11,6 +11,7 @@ public class PrestamosAutomovil extends Prestamo {
     public PrestamosAutomovil(String tipoAutomovil, String marcaAutomovil, Persona garante, double valorAutomovil, int tiempoPrestamo, String ciudad, String nombre, String apellido, String username) {
         super(tiempoPrestamo, ciudad, nombre, apellido, username);
         this.tipoAutomovil = tipoAutomovil;
+        this.garante = garante;
         this.marcaAutomovil = marcaAutomovil;
         this.valorAutomovil = valorAutomovil;
     }
@@ -50,15 +51,20 @@ public class PrestamosAutomovil extends Prestamo {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Tipo de Automovil:").append(tipoAutomovil);
-        sb.append(" \nMarcaAutomovil: ").append(marcaAutomovil);
-        sb.append(" \nValor Automovil: ").append(valorAutomovil);
-        sb.append(" \nValorMensual: ").append(valorMensual);
+        sb.append("------------------------------------");
+        sb.append("\nDatos de Beneficiario y Garante");
+        sb.append("\n------------------------------------");
+        sb.append(" \nBeneficiario: ").append(beneficiario);
         sb.append(" \nGarante: ").append(garante);
-        sb.append("Beneficiario: ").append(beneficiario);
-        sb.append(" \nTiempo de Prestamo:").append(tiempoPrestamo);
         sb.append(" \nCiudad: ").append(ciudad);
-
+        sb.append("\n------------------------------------");
+        sb.append("\nDatos del vehiculo y prestamo");
+        sb.append("\n------------------------------------");
+        sb.append(" \nTipo de Automovil:").append(tipoAutomovil);
+        sb.append(" \nMarca del Automovil: ").append(marcaAutomovil);
+        sb.append(" \nValor del Automovil: ").append(valorAutomovil);
+        sb.append(" \nTiempo de Prestamo:").append(tiempoPrestamo);
+        sb.append(String.format(" \nvalor mensual del Prestamo: %.2f", valorMensual));
         return sb.toString();
     }
 

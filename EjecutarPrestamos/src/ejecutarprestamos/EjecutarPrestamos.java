@@ -10,7 +10,7 @@ public class EjecutarPrestamos {
         //Arreglos donde guardaremos cada prestamo para imprimirlos al final
         ArrayList<PrestamoEducativo> pE = new ArrayList<>();
         ArrayList<PrestamosAutomovil> pA = new ArrayList<>();
-        int opc;
+        int opc, opc2;
         //variables persona;
         String nomP;
         String apel;
@@ -33,14 +33,15 @@ public class EjecutarPrestamos {
             opc = menu1();
             switch (opc) {
                 case 1:
-                    if (menu2() == 2) {
-                        PrestamoEducativo presEd = new PrestamoEducativo("Grado", 15000, 24, "Loja", "Danny", "Villacorta",
+                    opc2 = menu2();
+                    if (opc2 == 2) {
+                        PrestamoEducativo presEd = new PrestamoEducativo("Grado", 15000, 24, "LOJA", "Danny", "Villacorta",
                                 "ds-villacorta1@utpl", "Universidad Tecnica Particular de Loja", "UTPL");
                         presEd.calcularvalormensualEducativo();
-                        System.out.println(presEd);
                         //Agrego el prestamo al arreglo
                         pE.add(presEd);
-                    } else {
+                        System.out.println("Prestamo Educativo agregado......");
+                    } else if (opc2 == 1) {
                         //Beneficiario
                         System.out.println("\nDatos-Beneficiario:");
                         System.out.print("Ingrese su Nombre: ");
@@ -75,20 +76,22 @@ public class EjecutarPrestamos {
                         PrestamoEducativo presEd = new PrestamoEducativo(nivEst, valCarrera, timPres, ciudad, nomP, apel, uname, nomIns, siglas);
                         //calculamos el valor de pago mensual;
                         presEd.calcularvalormensualEducativo();
-                        //Imprimimos
-                        System.out.println(presEd);
                         //Agrego el prestamo al arreglo
                         pE.add(presEd);
+                        System.out.println("Prestamo Educativo agregado......");
+                    } else {
+                        break;
                     }
                     break;
                 case 2:
-                    if (menu2() == 2) {
+                    opc2 = menu2();
+                    if (opc2 == 2) {
                         Persona garante = new Persona("Israel", "Ludena", "is.ludean@utpl");
-                        PrestamosAutomovil presAu = new PrestamosAutomovil("Deportivo", "Audi", garante, 250000, 24, "QUITO", "Sebastian", "Yaguachi ", "se.yaguachi");
+                        PrestamosAutomovil presAu = new PrestamosAutomovil("Deportivo", "Audi", garante, 250000, 24, "quito", "Sebastian", "Yaguachi ", "se.yaguachi");
                         presAu.calcularValorMensual();
-                        System.out.println(presAu);
                         pA.add(presAu);
-                    } else {
+                        System.out.println("Prestamo de Automovil agregado......");
+                    } else if (opc2 == 1) {
                         //Garante
                         System.out.println("\nDatos-Garante:");
                         System.out.print("Ingrese su Nombre: ");
@@ -111,8 +114,8 @@ public class EjecutarPrestamos {
                         System.out.print("Ingrese Tiempo de Prestamo (en Meses): ");
                         timPres = sc.nextInt();
                         sc.nextLine();
-                        System.out.print("Ingrese la Ciudad(en Mayusculas): ");
-                        ciudad = sc.nextLine().toUpperCase();
+                        System.out.print("Ingrese la Ciudad(en Minusculas): ");
+                        ciudad = sc.nextLine().toLowerCase();
                         System.out.println("-----------------------------------");
                         System.out.println("\nDatos-Automovil");
                         System.out.print("Ingrese el tipo de Auto:");
@@ -124,8 +127,10 @@ public class EjecutarPrestamos {
                         //Creamo el objeto
                         PrestamosAutomovil presAu = new PrestamosAutomovil(tipoAu, marAu, garante, valAu, timPres, ciudad, nomP, apel, uname);
                         presAu.calcularValorMensual();
-                        System.out.println(presAu);
                         pA.add(presAu);
+                        System.out.println("Prestamo de Automovil agregado......");
+                    } else {
+                        break;
                     }
                     break;
             }
@@ -137,35 +142,45 @@ public class EjecutarPrestamos {
         } else {
             System.out.println("PRESTAMOS-EDUCATIVOS");
             for (int i = 0; i < pE.size(); i++) {
+                System.out.println("Prestamo Educativo [" + (i + 1) + "]");
                 System.out.println(pE.get(i));
             }
+            System.out.println("=============================================");
         }
         if (pA.isEmpty()) {
             System.out.println("No se ingreso ningun Prestamo de Automovil");
         } else {
-            System.out.println("PRESTAMOS-Automoviles");
+            System.out.println("PRESTAMOS-AUTOMOVILES");
             for (int i = 0; i < pA.size(); i++) {
+                System.out.println("Prestamo Automovilistico [" + (i + 1) + "]");
                 System.out.println(pA.get(i));
             }
+            System.out.println("=============================================");
         }
 
     }
 
     public static int menu1() {
         Scanner sc = new Scanner(System.in);
+        int opc;
         System.out.println("\nMenu Principal");
         System.out.println("[1] Prestamo Educativo");
         System.out.println("[2] prestamo de Automovil");
-        System.out.println("[0] Salir");
-        return sc.nextInt();
+        System.out.println("[0] Salir y Mostrar Prestamos");
+        opc = sc.nextInt();
+        sc.nextLine();
+        return opc;
     }
 
     public static int menu2() {
         Scanner sc = new Scanner(System.in);
+        int opc;
         System.out.println("\nDesea ingresar datos por teclado? ");
         System.out.println("[1] Si");
         System.out.println("[2] No");
         System.out.println("[0] Regresar");
-        return sc.nextInt();
+        opc = sc.nextInt();
+        sc.nextLine();
+        return opc;
     }
 }

@@ -40,17 +40,26 @@ public class PrestamoEducativo extends Prestamo {
     }
 
     public void calcularvalormensualEducativo() {
-        this.valormensualPrestamoedu = (double) (valorCarrera / tiempoPrestamo) * 0.90;
+        this.valormensualPrestamoedu = (double) (valorCarrera / tiempoPrestamo) * 0.9;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("PrestamoEducativo{");
-        sb.append(" \nNivel de Estudio=").append(nivelEstudio);
-        sb.append(" \ntipoInstitucion=").append(tipoInstitucion);
-        sb.append(" \nvalorCarrera=").append(valorCarrera);
-        sb.append(" \nvalormensualPrestamoedu=").append(valormensualPrestamoedu);
+        sb.append("---------------------------");
+        sb.append("\nDatos del Beneficiario: ");
+        sb.append("\n---------------------------");
+        sb.append(" \nBeneficiario: ").append(beneficiario);
+        sb.append(" \nCiudad: ").append(ciudad);
+        sb.append("\n------------------------------------");
+        sb.append("\nDatos de la institucion y prestamo:");
+        sb.append("\n------------------------------------");
+        sb.append(" \nNivel de Estudio:").append(nivelEstudio);
+        sb.append(" \n").append(tipoInstitucion);
+        sb.append(" \nTiempo de Prestamo:").append(tiempoPrestamo);
+        sb.append(" \nvalor de la Carrera:").append(valorCarrera);
+        sb.append(String.format(" \nvalor mensual del Prestamo: %.2f", valormensualPrestamoedu));
+
         return sb.toString();
     }
 }
