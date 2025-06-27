@@ -163,6 +163,7 @@ public class EjecutarPrestamos {
                         System.out.println("No hay prestamos de automoviles para ordenar");
                     } else {
                         System.out.println("PRESTAMOS-Automovil");
+                        apellidos.clear();
                         for (int i = 0; i < pA.size(); i++) {
                             apellidos.add(pA.get(i).beneficiario.apellido);
                         }
